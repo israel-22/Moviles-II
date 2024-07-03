@@ -3,11 +3,12 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native';
 import StartScreen from '../screens/StartScreen'
 import CategoriasScreen from '../screens/CategoriasScreen'
+import CartasScreen from '../screens/CartasScreen';
 // STACK
 export type RootStackParamList = {
     StartScreen:undefined,
     CategoriasScreen:undefined,
-  
+    CartasScreen:undefined
   }
   const Stack = createStackNavigator<RootStackParamList >();
 function MyStack() {
@@ -15,6 +16,7 @@ function MyStack() {
      <Stack.Navigator>
          <Stack.Screen name="StartScreen" component={StartScreen} options={{headerShown:false}}/>
          <Stack.Screen name="CategoriasScreen" component={CategoriasScreen} options={{headerShown:false}}/>
+         <Stack.Screen name="CartasScreen" component={CartasScreen} options={{headerShown:false}}/>
      </Stack.Navigator>
     )
 }
