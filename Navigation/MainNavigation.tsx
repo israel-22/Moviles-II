@@ -4,12 +4,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import StartScreen from '../screens/StartScreen'
 import CategoriasScreen from '../screens/CategoriasScreen'
 // STACK
-const Stack = createStackNavigator()
+export type RootStackParamList = {
+    StartScreen:undefined,
+    CategoriasScreen:undefined,
+  
+  }
+  const Stack = createStackNavigator<RootStackParamList >();
 function MyStack() {
     return (
      <Stack.Navigator>
-         <Stack.Screen name="StartScreen" component={StartScreen} options={{headerShown:true}}/>
-         <Stack.Screen name="Categoria" component={CategoriasScreen}/>
+         <Stack.Screen name="StartScreen" component={StartScreen} options={{headerShown:false}}/>
+         <Stack.Screen name="CategoriasScreen" component={CategoriasScreen} options={{headerShown:false}}/>
      </Stack.Navigator>
     )
 }

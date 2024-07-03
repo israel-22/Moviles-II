@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { RootStackParamList } from '../Navigation/MainNavigation';
+import { StackScreenProps } from '@react-navigation/stack';
+import CategoriasScreen from '../screens/CategoriasScreen'
+interface Props extends StackScreenProps<RootStackParamList,'StartScreen'>{};
 
-export default function ({ navigation }: any) {
+export default function ({ navigation }: Props) {
   const [name, setName] = useState('');
 
   const handleInputChange = (text: string) => {
