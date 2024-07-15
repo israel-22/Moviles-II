@@ -8,7 +8,7 @@ export default function WelcomeScreen({ navigation }: any) {
         <View style={styles.container}>
             <Text style={styles.title}>Pair Puzzle</Text>
             <View>
-                <TouchableOpacity style={styles.btnStart}>
+                <TouchableOpacity style={styles.btnStart} onPress={()=>navigation.navigate('StartScreen')}>
                     <Text style={styles.txt}>Comezar</Text>
                 </TouchableOpacity>
             </View>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 5,
         borderRadius: 10,
-        right:11
+        right:11,
 
     },
     txt: {
@@ -72,7 +72,13 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         color: 'green',
-        marginBottom: 20
+        marginBottom: 20,
+        textDecorationColor:'black',
+        textShadowColor:'#000',
+        textShadowOffset: { width: 0, height: 2 },
+        textShadowRadius:2,
+
+
     },
 
 })
