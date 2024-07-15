@@ -2,7 +2,7 @@ import { Button, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-export default function WelcomeScreen({ navigation }: any) {
+export default function WelcomeScreen({navigation}: any) {
 
     return (
         <View style={styles.container}>

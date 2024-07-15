@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { RootStackParamList } from '../Navigation/MainNavigation';
-import { StackScreenProps } from '@react-navigation/stack';
-import CategoriasScreen from '../screens/CategoriasScreen'
-interface Props extends StackScreenProps<RootStackParamList,'StartScreen'>{};
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function ({ navigation }: Props) {
+export default function ({ navigation }: any) {
   const [name, setName] = useState('');
 
   const handleInputChange = (text: string) => {
@@ -26,17 +23,30 @@ export default function ({ navigation }: Props) {
   return (
     <View style={styles.container}>
       <StatusBar style='auto' />
+      <Text style={styles.title}>Pair Puzzle</Text>
       <View>
-        <Text style={styles.title}>Pair Puzzle</Text>
+
         <View>
           <TextInput
             style={styles.input}
-            placeholder='Ingresa tu nombre aquí'
+            placeholder='Ingresa tu correo'
             onChangeText={handleInputChange}
             value={name}
           />
-          <Button title='Empezar' onPress={handleStartPress} />
+          <TextInput
+            style={styles.input}
+            placeholder='Ingresa tu clave'
+            onChangeText={handleInputChange}
+            value={name}
+          />
+          {/* <Button title='Empezar' onPress={handleStartPress} /> */}
         </View>
+        <TouchableOpacity style={styles.btnStart} onPress={handleStartPress} >
+          <Text style={styles.txt}>Comezar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnRegister} onPress={()=>navigation.navigate('Welcome')}>
+          <Text style={styles.txt}>Registrarse</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -45,27 +55,62 @@ export default function ({ navigation }: Props) {
 const styles = StyleSheet.create({
   input: {
     backgroundColor: 'white',
-    marginBottom: 5,
+    marginBottom: 10,
     width: 300,
     height: 35,
     textAlign: 'center',
     borderRadius: 10,
   },
   title: {
-    textAlign: 'center',
-    position: 'absolute',
-    top: -150,
-    width: 200,
-    padding: 10,
-    left: 50,
     fontSize: 30,
     fontWeight: 'bold',
     color: 'green',
+    marginBottom: 20,
+    textDecorationColor: 'black',
+    textShadowColor: '#000',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 2,
   },
   container: {
     flex: 1,
     backgroundColor: 'skyblue',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  btnStart: {
+    backgroundColor: '#3c59ea',
+    borderWidth: 1,
+    borderColor: 'white',
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: 10,
+    borderRadius: 10,
+    paddingVertical: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
+
+  },
+  txt: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  btnRegister: {
+    backgroundColor: '#17B169',
+    borderWidth: 1,
+    borderColor: 'white',
+    width: '100%',
+    alignItems: 'center',
+    paddingVertical: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
+    borderRadius: 10,
   },
 });
