@@ -25,9 +25,7 @@ export default function ({ navigation }: any) {
       <StatusBar style='auto' />
       <Text style={styles.title}>Pair Puzzle</Text>
       <View>
-
         <View>
-          
           <TextInput
             style={styles.input}
             placeholder='Ingresa tu correo'
@@ -40,7 +38,6 @@ export default function ({ navigation }: any) {
             onChangeText={handleInputChange}
             value={name}
           />
-          {/* <Button title='Empezar' onPress={handleStartPress} /> */}
         </View>
         <TouchableOpacity style={styles.btnStart} onPress={handleStartPress} >
           <Text style={styles.txt}>Comezar</Text>
