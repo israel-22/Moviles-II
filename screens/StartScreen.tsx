@@ -27,6 +27,7 @@ export default function ({ navigation }: any) {
       <View>
 
         <View>
+          <Text>Hola</Text>
           <TextInput
             style={styles.input}
             placeholder='Ingresa tu correo'
