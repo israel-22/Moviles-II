@@ -5,6 +5,7 @@ import StartScreen from '../screens/StartScreen'
 import CategoriasScreen from '../screens/CategoriasScreen'
 import CartasScreen from '../screens/CartasScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
+import RegistroScreen from '../screens/RegistroScreen';
 
   const Stack = createStackNavigator();
 
@@ -13,6 +14,7 @@ function MyStack() {
      <Stack.Navigator>
           <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown:false}}/> 
          <Stack.Screen name="StartScreen" component={StartScreen} options={{headerShown:false}}/>
+         <Stack.Screen name="RegistroScreen" component={RegistroScreen} options={{headerShown:false}}/>
          <Stack.Screen name="CategoriasScreen" component={CategoriasScreen} options={{headerShown:false}}/>
          <Stack.Screen name="CartasScreen" component={CartasScreen} options={{headerShown:false}}/>
      </Stack.Navigator>

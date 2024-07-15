@@ -13,7 +13,7 @@ export default function WelcomeScreen({navigation}: any) {
                 </TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity style={styles.btnRegister}>
+                <TouchableOpacity style={styles.btnRegister}onPress={()=>navigation.navigate('RegistroScreen')}>
                     <Text style={styles.txt}>Registrarse</Text>
                 </TouchableOpacity>
             </View>

@@ -27,7 +27,7 @@ export default function ({ navigation }: any) {
       <View>
 
         <View>
-          <Text>Hola</Text>
+ 
           <TextInput
             style={styles.input}
             placeholder='Ingresa tu correo'
@@ -45,7 +45,7 @@ export default function ({ navigation }: any) {
         <TouchableOpacity style={styles.btnStart} onPress={handleStartPress} >
           <Text style={styles.txt}>Comezar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btnRegister} onPress={()=>navigation.navigate('Welcome')}>
+        <TouchableOpacity style={styles.btnRegister} onPress={()=>navigation.navigate('RegistroScreen')}>
           <Text style={styles.txt}>Registrarse</Text>
         </TouchableOpacity>
       </View>
