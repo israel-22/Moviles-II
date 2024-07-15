@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../juego JS/pares"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "pares"
+	}
+}

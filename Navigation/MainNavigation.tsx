@@ -4,16 +4,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import StartScreen from '../screens/StartScreen'
 import CategoriasScreen from '../screens/CategoriasScreen'
 import CartasScreen from '../screens/CartasScreen';
-// STACK
-export type RootStackParamList = {
-    StartScreen:undefined,
-    CategoriasScreen:undefined,
-    CartasScreen:undefined
-  }
-  const Stack = createStackNavigator<RootStackParamList >();
+import WelcomeScreen from '../screens/WelcomeScreen';
+
+  const Stack = createStackNavigator();
+
 function MyStack() {
     return (
      <Stack.Navigator>
+         <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown:false}}/>
          <Stack.Screen name="StartScreen" component={StartScreen} options={{headerShown:false}}/>
          <Stack.Screen name="CategoriasScreen" component={CategoriasScreen} options={{headerShown:false}}/>
          <Stack.Screen name="CartasScreen" component={CartasScreen} options={{headerShown:false}}/>
@@ -28,5 +26,3 @@ export default function Navegador() {
         </NavigationContainer>
     )
 }
-
-const styles = StyleSheet.create({})
