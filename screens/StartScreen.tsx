@@ -34,7 +34,7 @@ export default function ({ navigation }: any) {
           />
           <TextInput
             style={styles.input}
-            placeholder='Ingresa tu clave'
+            placeholder='Ingresa tu contraseña'
             onChangeText={handleInputChange}
             value={name}
           />
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: 'bold'
   },
   btnRegister: {
