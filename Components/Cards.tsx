@@ -1,6 +1,7 @@
 import { Alert, Button, Image, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
 const totalCards = 6; // Asegúrate de que siempre sea un número par
 const availableCards: string[] = ['A', 'K', 'Q', 'J'];
 
@@ -66,7 +67,6 @@ export default function Cards() {
                         setCurrentAttempts(currentAttempts + 1);
 
                         if (newSelectedCards[0].value === newSelectedCards[1].value) {
-
                             const matchedCards = cards.map(c => {
                                 if (c.id === newSelectedCards[0].id || c.id === newSelectedCards[1].id) {
                                     c.isMatched = true;
@@ -79,7 +79,7 @@ export default function Cards() {
 
                                 Alert.alert(
                                     "Fin del Juego",
-                                    `Número de intentos: ${currentAttempts + 1}`,
+                                    " 🎊 Felicidades has Ganado 🎉  "+`Número de intentos: ${currentAttempts + 1}`,
                                     [{ text: "OK", onPress: initializeGame }]
                                 );
                             }
