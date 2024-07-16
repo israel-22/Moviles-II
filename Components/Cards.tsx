@@ -1,7 +1,7 @@
 import { Alert, Button, Image, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-const totalCards = 12; // Asegúrate de que siempre sea un número par
+const totalCards = 6; // Asegúrate de que siempre sea un número par
 const availableCards: string[] = ['A', 'K', 'Q', 'J'];
 
 interface Card {
@@ -66,25 +66,22 @@ export default function Cards() {
                         setCurrentAttempts(currentAttempts + 1);
 
                         if (newSelectedCards[0].value === newSelectedCards[1].value) {
-                            if (Array.isArray(updatedCards)) {
-                                const matchedCards = updatedCards.map(c => {
-                                    if (c.id === newSelectedCards[0].id || c.id === newSelectedCards[1].id) {
-                                        c.isMatched = true;
-                                    }
-                                    return c;
-                                });
-                                setCards(matchedCards);
 
-                                // Verificar si todas las cartas han sido emparejadas
-                                if (matchedCards.every(card => card.isMatched)) {
-                                    Alert.alert(
-                                        "Fin del Juego",
-                                        `Número de intentos: ${currentAttempts}`,
-                                        [{ text: "OK", onPress: initializeGame }]
-                                    );
+                            const matchedCards = cards.map(c => {
+                                if (c.id === newSelectedCards[0].id || c.id === newSelectedCards[1].id) {
+                                    c.isMatched = true;
                                 }
-                            } else {
-                                console.error("updatedCards is not defined or not an array");
+                                return c;
+                            });
+                            setCards(matchedCards);
+                            // Verificar si todas las cartas han sido emparejadas
+                            if (matchedCards.every(card => card.isMatched)) {
+
+                                Alert.alert(
+                                    "Fin del Juego",
+                                    `Número de intentos: ${currentAttempts + 1}`,
+                                    [{ text: "OK", onPress: initializeGame }]
+                                );
                             }
 
                             setSelectedCards([]);
