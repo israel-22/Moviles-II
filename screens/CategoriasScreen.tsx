@@ -8,9 +8,9 @@ export default function CategoriasScreen({navigation}:any) {
     <View style={styles.container}>
       <Text style={styles.title}>Seleccione un nivel</Text>
       <View style={styles.buttonsContainer}>
-        <Button title='Fácil' onPress={()=>navigation.navigate('CartasScreen')} />
-        <Button title='Medio' onPress={()=>navigation.navigate('CartasScreen')}/>
-        <Button title='Difícil' onPress={()=>navigation.navigate('CartasScreen')} />
+        <Button title='Fácil' onPress={()=>navigation.navigate('MyTabs')} />
+        <Button title='Medio' onPress={()=>navigation.navigate('MyTabs')}/>
+        <Button title='Difícil' onPress={()=>navigation.navigate('MyTabs')} />
       </View>  
     </View>
   );

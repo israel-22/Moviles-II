@@ -1,17 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import StartScreen from './screens/StartScreen';
-import Navegador from './Navigation/MainNavigation';
 import RegistroScreen from './screens/RegistroScreen';
+import Navegador from './Navigation/MainNavigation';
 
 export default function App() {
   return (
-
  <Navegador/>
-
-
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
