@@ -1,7 +1,7 @@
 import { Button, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Navegador from '../navigation/MainNavigation';
+import Navegador from '../Navigation/MainNavigation';
 
 export default function CategoriasScreen({navigation}:any) {
   return (
