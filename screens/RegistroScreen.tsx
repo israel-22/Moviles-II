@@ -3,8 +3,46 @@ import React, { useState } from 'react';
 import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { getDatabase, ref, set } from "firebase/database";
+import { auth, db } from '../config/Config';
+import { getAuth, createUserWithEmailAndPassword  } from "firebase/auth";
+
 
 export default function RegistroScreen({ navigation }: any) {
+
+  const[nombre, setNombre]=useState("");
+  const[correo, setCorreo]=useState("");
+  const[contrasenia, setContrasenia]=useState("");
+
+  function registro(){
+    // autentificar contraseña
+    createUserWithEmailAndPassword(auth, correo, contrasenia)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    console.log(user);
+    
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+    console.log(errorCode);
+    
+  });
+
+  //Alert.alert("Autentificacion completa")
+  //conexion bace de datos
+    set(ref(db, 'usuarios/'), {
+      username: nombre,
+      email: correo,
+      pasword: contrasenia
+    });
+    Alert.alert("Registro Exitoso")
+  }
+
+  
   return (
     <View style={styles.container}>
       <StatusBar style='auto' />
@@ -13,33 +51,29 @@ export default function RegistroScreen({ navigation }: any) {
         <View>
           <TextInput
             style={styles.input}
-            placeholder='Nombre'
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Ingresa tu país'
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Ingresa tu celular'
+            placeholder='Nombre Usuario'
+            onChangeText={(texto)=>(setNombre(texto))}
           />
           <TextInput
             style={styles.input}
             placeholder='Ingresa tu correo'
+            onChangeText={(texto)=>(setCorreo(texto))}
           />
           <TextInput
             style={styles.input}
             placeholder='Ingresa tu contraseña'
+            onChangeText={(texto)=>(setContrasenia(texto))}
           />
           <TextInput
             style={styles.input}
             placeholder='Verifica tu contraseña'
+            onChangeText={(texto)=>(setContrasenia(texto))}
           />
         </View>
-        <TouchableOpacity style={styles.btnStart} onPress={()=>navigation.navigate('StartScreen')} >
+        <TouchableOpacity style={styles.btnStart} onPress={() => navigation.navigate('StartScreen')} >
           <Text style={styles.txt}>Iniciar Sesión</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btnRegister} onPress={() => navigation.navigate('Welcome')}>
+        <TouchableOpacity style={styles.btnRegister} onPress={registro}>
           <Text style={styles.txt}>Registrarse</Text>
         </TouchableOpacity>
       </View>

@@ -2,23 +2,30 @@ import React, { useState } from 'react';
 import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../config/Config';
+
 
 export default function ({ navigation }: any) {
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [contrasenia, setContrasenia] = useState('');
 
-  const handleInputChange = (text: string) => {
-    setName(text);
-  };
+  function login(){
+    signInWithEmailAndPassword(auth, email, contrasenia)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      navigation.navigate("CategoriasScreen")
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
 
-  const handleStartPress = () => {
-    if (name.trim() === '') {
-      Alert.alert('Error', 'Por favor ingresa tu nombre para empezar');
-    } else {
-      Alert.alert('Bienvenido', `Hola ${name}, ¡comienza el juego!`);
-      setName('');
-      navigation.navigate('CategoriasScreen');
-    }
-  };
+  }
+
+  
 
   return (
     <View style={styles.container}>
@@ -29,17 +36,15 @@ export default function ({ navigation }: any) {
           <TextInput
             style={styles.input}
             placeholder='Ingresa tu correo'
-            onChangeText={handleInputChange}
-            value={name}
+            onChangeText={(texto)=>(setEmail(texto))}
           />
           <TextInput
             style={styles.input}
             placeholder='Ingresa tu contraseña'
-            onChangeText={handleInputChange}
-            value={name}
+            onChangeText={(texto)=>(setContrasenia(texto))}
           />
         </View>
-        <TouchableOpacity style={styles.btnStart} onPress={handleStartPress} >
+        <TouchableOpacity style={styles.btnStart} onPress={login} >
           <Text style={styles.txt}>Comezar</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.btnRegister} onPress={()=>navigation.navigate('RegistroScreen')}>
