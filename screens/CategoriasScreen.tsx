@@ -1,55 +1,17 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
-import { Alert, Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import Navegador from '../navigation/MainNavigation';
 
-
-
-
-
-const CategoriasScreen = () => {
-  const navigation = useNavigation<any>(); // Asegúrate de definir el tipo correcto si es necesario
-  const [selectedLevel, setSelectedLevel] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-
-  const categories = [
-    { id: 'animals', image: require('../assets/animal.jpg') },
-    { id: 'fruits', image: require('../assets/fruta.jpg') },
-    { id: 'vehicles', image: require('../assets/vehiculo.png') },
-  ];
-
-  const handleLevelSelect = (level: string) => {
-    setSelectedLevel(level);
-  };
-
-  const handleCategorySelect = (category: string) => {
-    setSelectedCategory(category);
-  };
-
-  const handleContinuePress = () => {
-    if (!selectedLevel || !selectedCategory) {
-      Alert.alert('Error', 'Por favor selecciona un nivel y una categoría para continuar.');
-    } else {
-      navigation.navigate('GameScreen', { level: selectedLevel, category: selectedCategory });
-    }
-  };
-
+export default function CategoriasScreen({navigation}:any) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Seleccione un nivel</Text>
       <View style={styles.buttonsContainer}>
-        <Button title='Fácil'  />
-        <Button title='Medio' />
-        <Button title='Difícil'  />
-      </View>
-      <Text style={styles.title}>Seleccione una categoría</Text>
-      <View style={styles.categoriesContainer}>
-        {categories.map((category) => (
-          <TouchableOpacity key={category.id} onPress={() => handleCategorySelect(category.id)}>
-            <Image source={category.image} style={styles.categoryImage} />
-          </TouchableOpacity>
-        ))}
-      </View>
-      <Button title='Continuar' onPress={handleContinuePress} />
+        <Button title='Fácil' onPress={()=>navigation.navigate('MyTabs')} />
+        <Button title='Medio' onPress={()=>navigation.navigate('MyTabs')}/>
+        <Button title='Difícil' onPress={()=>navigation.navigate('MyTabs')} />
+      </View>  
     </View>
   );
 };
@@ -81,5 +43,3 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
-
-export default CategoriasScreen;
