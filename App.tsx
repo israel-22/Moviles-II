@@ -6,10 +6,7 @@ import RegistroScreen from './screens/RegistroScreen';
 
 export default function App() {
   return (
-
  <Navegador/>
-
-
   );
 }
 const styles = StyleSheet.create({
