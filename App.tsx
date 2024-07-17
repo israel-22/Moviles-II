@@ -5,7 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import StartScreen from './screens/StartScreen';
 import RegistroScreen from './screens/RegistroScreen';
-import Navegador from './Navigation/MainNavigation';
+import Navegador from './navigation/MainNavigation';
+
 
 export default function App() {
   return (
