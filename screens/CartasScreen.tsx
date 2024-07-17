@@ -1,6 +1,11 @@
 import { Alert, Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import { RouteProp } from '../component/types';
 
+type CartasScreenRouteProp = RouteProp<'CartasScreen'>;
+type Props = {
+  route: CartasScreenRouteProp;
+};
 const availableCards: string[] = ['A', 'K', 'Q', 'J'];
 
 interface Card {
@@ -10,9 +15,9 @@ interface Card {
   isMatched: boolean;
 }
 
-export default function CartasScreen() {
+export default function CartasScreen({ route }: Props) {
 
-  const totalcards = 4;
+  const { totalcards } = route.params;
 
   const [cards, setCards] = useState<Card[]>([]);
   const [selectedCards, setSelectedCards] = useState<Card[]>([]);

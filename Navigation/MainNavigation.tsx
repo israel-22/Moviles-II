@@ -13,6 +13,8 @@ import PerfilScreen from '../screens/PerfilScreen';
 import HistorialScreen from '../screens/HistorialScreen';
 import ConfiguracionScreen from '../screens/ConfiguracionScreen';
 
+
+
   const Stack = createStackNavigator();
 
 function MyStack() {
