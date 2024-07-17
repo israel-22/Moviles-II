@@ -1,63 +1,58 @@
-import React from 'react'
-import { Image } from 'react-native-paper/lib/typescript/components/Avatar/Avatar';
-import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { getDatabase, ref, set } from "firebase/database";
-import { auth, db } from '../config/Config';
-import { getAuth, createUserWithEmailAndPassword  } from "firebase/auth";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
 
-
-
-export default function PerfilScreen({ navigation }: any) {
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [phone, setPhone] = React.useState('');
-  const [address, setAddress] = React.useState('');
+export default function PerfilScreen() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
 
   const handleSave = () => {
     // Aquí puedes añadir la lógica para guardar los datos del perfil
     //firebase
     alert('Perfil guardado exitosamente');
   };
-
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Perfil de Usuario</Text>
+    <Text style={styles.title}>Perfil de Usuario</Text>
+    <View style={styles.infoContainer}>
+      <View style={styles.containerImg}>
+      <TouchableOpacity>
       <Image source={require('../assets/animal.jpg')} style={styles.profileImage} />
-      <View style={styles.infoContainer}>
-        <Text style={styles.label}>Nombre:</Text>
-        <TextInput 
-          style={styles.input} 
-          value={name} 
-          onChangeText={setName} 
-        />
-        <Text style={styles.label}>Correo Electrónico:</Text>
-        <TextInput 
-          style={styles.input} 
-          value={email} 
-          onChangeText={setEmail} 
-          keyboardType="email-address" 
-        />
-        <Text style={styles.label}>Teléfono:</Text>
-        <TextInput 
-          style={styles.input} 
-          value={phone} 
-          onChangeText={setPhone} 
-          keyboardType="phone-pad" 
-        />
-        <Text style={styles.label}>Dirección:</Text>
-        <TextInput 
-          style={styles.input} 
-          value={address} 
-          onChangeText={setAddress} 
-        />
+      </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.btnStart}>
-          <Text style={styles.txt}>Iniciar Sesión</Text>
-        </TouchableOpacity>
+      <Text style={styles.label}>Nombre:</Text>
+      <TextInput 
+        style={styles.input} 
+        value={name} 
+        onChangeText={setName} 
+      />
+      <Text style={styles.label}>Correo Electrónico:</Text>
+      <TextInput 
+        style={styles.input} 
+        value={email} 
+        onChangeText={setEmail} 
+        keyboardType="email-address" 
+      />
+      <Text style={styles.label}>Teléfono:</Text>
+      <TextInput 
+        style={styles.input} 
+        value={phone} 
+        onChangeText={setPhone} 
+        keyboardType="phone-pad" 
+      />
+      <Text style={styles.label}>Dirección:</Text>
+      <TextInput 
+        style={styles.input} 
+        value={address} 
+        onChangeText={setAddress} 
+      />
     </View>
-  );
+    <TouchableOpacity style={styles.btnStart}>
+        <Text style={styles.txt}>Actualizar Perfil</Text>
+      </TouchableOpacity>
+  </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -82,6 +77,7 @@ const styles = StyleSheet.create({
   infoContainer: {
     width: '100%',
     marginBottom: 20,
+   
   },
   label: {
     fontSize: 18,
@@ -117,4 +113,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 'bold'
   },
-});
+containerImg:{
+  alignItems:'center'
+}
+})
