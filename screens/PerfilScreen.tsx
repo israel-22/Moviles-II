@@ -1,15 +1,18 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react';
+import { Image, Alert, Button, StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { getDatabase, ref, set } from "firebase/database";
+import { auth, db } from '../config/Config';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
-export default function PerfilScreen() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
+export default function PerfilScreen({ navigation }: any) {
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [phone, setPhone] = React.useState('');
+  const [address, setAddress] = React.useState('');
 
   const handleSave = () => {
     // Aquí puedes añadir la lógica para guardar los datos del perfil
-    //firebase
     alert('Perfil guardado exitosamente');
   };
   return (
@@ -106,12 +109,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 5,
-
   },
   txt: {
     color: 'white',
     fontSize: 17,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
 containerImg:{
   alignItems:'center'

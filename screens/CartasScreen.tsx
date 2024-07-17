@@ -131,7 +131,6 @@ export default function CartasScreen() {
 
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.stats}>{dato}</Text> */}
       <Text style={styles.stats}>{currentAttempts} intentos</Text>
       <View style={styles.game}>
         {cards.map((card) => (
