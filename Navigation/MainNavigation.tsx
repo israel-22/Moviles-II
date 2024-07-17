@@ -21,11 +21,10 @@ import ConfiguracionScreen from '../screens/ConfiguracionScreen';
 function MyStack() {
     return (
      <Stack.Navigator>
-          {/* <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown:false}}/>  */}
-         {/* <Stack.Screen name="StartScreen" component={StartScreen} options={{headerShown:false}}/>
-         <Stack.Screen name="RegistroScreen" component={RegistroScreen} options={{headerShown:false}}/>  */}
-          <Stack.Screen name="CategoriasScreen" component={CategoriasScreen}  options={{headerShown:false}}/> 
-         <Stack.Screen name="CartasScreen" component={CartasScreen} options={{headerShown:false}}/> 
+          <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown:false}}/>  
+         <Stack.Screen name="StartScreen" component={StartScreen} options={{headerShown:false}}/>
+         <Stack.Screen name="RegistroScreen" component={RegistroScreen} options={{headerShown:false}}/>  
+          <Stack.Screen name="CategoriasScreen" component={CategoriasScreen}  options={{headerShown:false}}/>
          <Stack.Screen name="MyTabs" component={MyTabs}  options={{headerShown:false}}/> 
      </Stack.Navigator>
     )
