@@ -1,6 +1,8 @@
 import { Alert, Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
+import { useRoute } from '@react-navigation/native'
+
 const availableCards: string[] = ['A', 'K', 'Q', 'J'];
 
 interface Card {
@@ -11,8 +13,12 @@ interface Card {
 }
 
 export default function CartasScreen() {
+  const ruta = useRoute()
+  const { dato }:any = ruta.params
 
-  const totalcards = 4;
+
+  //const { totalcards } = route.params;
+  const totalcards = dato;
 
   const [cards, setCards] = useState<Card[]>([]);
   const [selectedCards, setSelectedCards] = useState<Card[]>([]);

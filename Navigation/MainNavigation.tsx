@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native';
 import StartScreen from '../screens/StartScreen'
@@ -13,32 +12,36 @@ import PerfilScreen from '../screens/PerfilScreen';
 import HistorialScreen from '../screens/HistorialScreen';
 import ConfiguracionScreen from '../screens/ConfiguracionScreen';
 
-  const Stack = createStackNavigator();
+
+
+
+const Stack = createStackNavigator();
 
 function MyStack() {
-    return (
-     <Stack.Navigator>
-          {/* <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown:false}}/>  */}
-         {/* <Stack.Screen name="StartScreen" component={StartScreen} options={{headerShown:false}}/>
-         <Stack.Screen name="RegistroScreen" component={RegistroScreen} options={{headerShown:false}}/>  */}
-         <Stack.Screen name="CategoriasScreen" component={CategoriasScreen} options={{headerShown:false}}/>
-         <Stack.Screen name="CartasScreen" component={CartasScreen} options={{headerShown:false}}/>
-         <Stack.Screen name="MyTabs" component={MyTabs} options={{headerShown:false}}/>
-     </Stack.Navigator>
-    )
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="StartScreen" component={StartScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="RegistroScreen" component={RegistroScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="CategoriasScreen" component={CategoriasScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="MyTabs" component={MyTabs} options={{ headerShown: false }} />
+    </Stack.Navigator>
+  )
 }
 
 const Tab = createMaterialBottomTabNavigator();
 
-function MyTabs() {
+function MyTabs({ route }: any) {
+  const { dato }: any = route.params
+
   return (
     <Tab.Navigator
       initialRouteName="Juego"
       activeColor="#035096"
       inactiveColor="#560c0e"
-      barStyle={{backgroundColor:'lightgrey' }}
+      barStyle={{ backgroundColor: 'lightgrey' }}
     >
-           <Tab.Screen
+      <Tab.Screen
         name="Perfil"
         component={PerfilScreen}
         options={{
@@ -46,22 +49,23 @@ function MyTabs() {
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" color={color} size={26} />
           ),
-                }}
+        }}
       />
 
-         <Tab.Screen
+      <Tab.Screen
         name="Juego"
         component={CartasScreen}
+        initialParams={{ dato }}
         options={{
           tabBarLabel: 'Jugar',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="gamepad-variant" color={color} size={26} />
           ),
-        
+
         }}
-    
+
       />
-        <Tab.Screen
+      <Tab.Screen
         name="Historial"
         component={HistorialScreen}
         options={{
@@ -71,7 +75,7 @@ function MyTabs() {
           ),
         }}
       />
-        <Tab.Screen
+      <Tab.Screen
         name="config"
         component={ConfiguracionScreen}
         options={{
@@ -79,7 +83,7 @@ function MyTabs() {
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="cog" color={color} size={26} />
           ),
-                }}
+        }}
       />
     </Tab.Navigator>
   );
@@ -87,9 +91,9 @@ function MyTabs() {
 
 
 export default function Navegador() {
-    return (
-        <NavigationContainer>
-            <MyStack/>
-        </NavigationContainer>
-    )
+  return (
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
+  )
 }
