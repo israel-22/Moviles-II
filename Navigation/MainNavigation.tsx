@@ -25,7 +25,7 @@ function MyStack() {
          {/* <Stack.Screen name="StartScreen" component={StartScreen} options={{headerShown:false}}/>
          <Stack.Screen name="RegistroScreen" component={RegistroScreen} options={{headerShown:false}}/>  */}
           <Stack.Screen name="CategoriasScreen" component={CategoriasScreen}  options={{headerShown:false}}/> 
-         <Stack.Screen name="CartasScreen" component={CartasScreen} options={{headerShown:false}}/> 
+         {/* <Stack.Screen name="CartasScreen" component={CartasScreen} options={{headerShown:false}}/>  */}
          <Stack.Screen name="MyTabs" component={MyTabs}  options={{headerShown:false}}/> 
      </Stack.Navigator>
     )
@@ -33,7 +33,9 @@ function MyStack() {
 
 const Tab = createMaterialBottomTabNavigator();
 
-function MyTabs() {
+function MyTabs({route}:any) {
+  const {dato}:any=route.params
+
   return (
     <Tab.Navigator
       initialRouteName="Juego"
@@ -55,18 +57,7 @@ function MyTabs() {
          <Tab.Screen
         name="Juego"
         component={CartasScreen}
-        options={{
-          tabBarLabel: 'Jugar',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="gamepad-variant" color={color} size={26} />
-          ),
-        
-        }}
-    
-      />
-        <Tab.Screen
-        name="Juego"
-        component={CategoriasScreen}
+        initialParams={{dato}}
         options={{
           tabBarLabel: 'Jugar',
           tabBarIcon: ({ color }) => (

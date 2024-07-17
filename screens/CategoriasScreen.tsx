@@ -5,7 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 //Props
 export type RootStackParamList={
   CategoriasScreen: undefined;
-  MyTabs: { totalcards: number };
+  MyTabs: { dato : number };
 }
 
 type CategoriasScreenNavigationProp = StackNavigationProp<RootStackParamList, 'CategoriasScreen'>;
@@ -15,17 +15,17 @@ type Props = {
 };
 
 export default function CategoriasScreen({navigation}:Props) {
-  const Niveles = (totalcards: number) => {
-    navigation.navigate('MyTabs', { totalcards });
+  const Niveles = (dato:number ) => {
+    navigation.navigate('MyTabs',{dato});
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Seleccione un nivel</Text>
       <View style={styles.buttonsContainer}>
-      <Button title='Fácil' onPress={() =>navigation.navigate('MyTabs',{dato:8})} />
-        <Button title='Medio' onPress={()=>navigation.navigate('MyTabs',{dato:16})}/>
-        <Button title='Difícil' onPress={()=>navigation.navigate('CartasScreen',{dato:20})} />
+      <Button title='Fácil' onPress={() =>Niveles(8)} />
+        <Button title='Medio' onPress={()=>Niveles(12)}/>
+        <Button title='Difícil' onPress={()=>Niveles(20)} />
       </View>  
     </View>
   );
