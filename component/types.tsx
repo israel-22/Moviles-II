@@ -1,5 +1,5 @@
 // types.ts
-import { RouteProp} from '@react-navigation/native';
+//import { RouteProp} from '@react-navigation/native';
 
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -17,4 +17,4 @@ export type RootStackParamList = {
 
 // Define los tipos para las propiedades de navegación y de ruta
  export type NavigationProp<T extends keyof RootStackParamList> = StackNavigationProp<RootStackParamList, T>;
-export type RouteProp<T extends keyof RootStackParamList> = RouteProp<RootStackParamList, T>;
+//export type RouteProp<T extends keyof RootStackParamList> = RouteProp<RootStackParamList, T>;

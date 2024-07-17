@@ -15,6 +15,7 @@ import ConfiguracionScreen from '../screens/ConfiguracionScreen';
 
 
 
+
   const Stack = createStackNavigator();
 
 function MyStack() {
@@ -23,9 +24,9 @@ function MyStack() {
           {/* <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown:false}}/>  */}
          {/* <Stack.Screen name="StartScreen" component={StartScreen} options={{headerShown:false}}/>
          <Stack.Screen name="RegistroScreen" component={RegistroScreen} options={{headerShown:false}}/>  */}
-         <Stack.Screen name="CategoriasScreen" component={CategoriasScreen} options={{headerShown:false}}/>
-         <Stack.Screen name="CartasScreen" component={CartasScreen} options={{headerShown:false}}/>
-         <Stack.Screen name="MyTabs" component={MyTabs} options={{headerShown:false}}/>
+          <Stack.Screen name="CategoriasScreen" component={CategoriasScreen}  options={{headerShown:false}}/> 
+         <Stack.Screen name="CartasScreen" component={CartasScreen} options={{headerShown:false}}/> 
+         <Stack.Screen name="MyTabs" component={MyTabs}  options={{headerShown:false}}/> 
      </Stack.Navigator>
     )
 }
@@ -54,6 +55,18 @@ function MyTabs() {
          <Tab.Screen
         name="Juego"
         component={CartasScreen}
+        options={{
+          tabBarLabel: 'Jugar',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="gamepad-variant" color={color} size={26} />
+          ),
+        
+        }}
+    
+      />
+        <Tab.Screen
+        name="Juego"
+        component={CategoriasScreen}
         options={{
           tabBarLabel: 'Jugar',
           tabBarIcon: ({ color }) => (

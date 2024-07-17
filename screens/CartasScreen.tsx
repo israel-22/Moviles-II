@@ -1,6 +1,7 @@
 import { Alert, Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { RouteProp } from '../component/types';
+import {useRoute} from '@react-navigation/native'
 
 type CartasScreenRouteProp = RouteProp<'CartasScreen'>;
 type Props = {
@@ -16,8 +17,11 @@ interface Card {
 }
 
 export default function CartasScreen({ route }: Props) {
+  const ruta= useRoute()
+  const {dato}:any=ruta.params
 
-  const { totalcards } = route.params;
+  //const { totalcards } = route.params;
+  const totalcards  = dato;
 
   const [cards, setCards] = useState<Card[]>([]);
   const [selectedCards, setSelectedCards] = useState<Card[]>([]);
@@ -130,6 +134,7 @@ export default function CartasScreen({ route }: Props) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.stats}>{dato}</Text>
       <Text style={styles.stats}>{currentAttempts} intentos</Text>
       <View style={styles.game}>
         {cards.map((card) => (

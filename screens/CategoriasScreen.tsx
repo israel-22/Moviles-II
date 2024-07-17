@@ -23,9 +23,9 @@ export default function CategoriasScreen({navigation}:Props) {
     <View style={styles.container}>
       <Text style={styles.title}>Seleccione un nivel</Text>
       <View style={styles.buttonsContainer}>
-      <Button title='Fácil' onPress={() => Niveles(8)} />
-        <Button title='Medio' onPress={()=>navigation.navigate('MyTabs')}/>
-        <Button title='Difícil' onPress={()=>navigation.navigate('MyTabs')} />
+      <Button title='Fácil' onPress={() =>navigation.navigate('MyTabs',{dato:8})} />
+        <Button title='Medio' onPress={()=>navigation.navigate('MyTabs',{dato:16})}/>
+        <Button title='Difícil' onPress={()=>navigation.navigate('CartasScreen',{dato:20})} />
       </View>  
     </View>
   );
