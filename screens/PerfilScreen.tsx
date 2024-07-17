@@ -1,13 +1,9 @@
-import React from 'react'
-import { Image } from 'react-native-paper/lib/typescript/components/Avatar/Avatar';
-import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import React from 'react';
+import { Image, Alert, Button, StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { getDatabase, ref, set } from "firebase/database";
 import { auth, db } from '../config/Config';
-import { getAuth, createUserWithEmailAndPassword  } from "firebase/auth";
-
-
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function PerfilScreen({ navigation }: any) {
   const [name, setName] = React.useState('');
@@ -17,7 +13,6 @@ export default function PerfilScreen({ navigation }: any) {
 
   const handleSave = () => {
     // Aquí puedes añadir la lógica para guardar los datos del perfil
-    //firebase
     alert('Perfil guardado exitosamente');
   };
 
@@ -53,9 +48,9 @@ export default function PerfilScreen({ navigation }: any) {
           onChangeText={setAddress} 
         />
       </View>
-      <TouchableOpacity style={styles.btnStart}>
-          <Text style={styles.txt}>Iniciar Sesión</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.btnStart} onPress={handleSave}>
+        <Text style={styles.txt}>Iniciar Sesión</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -110,11 +105,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 5,
-
   },
   txt: {
     color: 'white',
     fontSize: 17,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
 });
