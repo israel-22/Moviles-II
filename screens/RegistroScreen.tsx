@@ -1,39 +1,60 @@
 
 import React, { useState } from 'react';
-import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { getDatabase, ref, set } from "firebase/database";
 import { auth, db } from '../config/Config';
-import { getAuth, createUserWithEmailAndPassword  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { ImageBackground } from 'react-native';
 
 
 export default function RegistroScreen({ navigation }: any) {
 
-  const[nombre, setNombre]=useState("");
-  const[correo, setCorreo]=useState("");
-  const[contrasenia, setContrasenia]=useState("");
+  const [nombre, setNombre] = useState("");
+  const [correo, setCorreo] = useState("");
+  const [contrasenia, setContrasenia] = useState("");
 
-  function registro(){
+  function registro() {
     // autentificar contraseña
     createUserWithEmailAndPassword(auth, correo, contrasenia)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    console.log(user);
-    
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-    console.log(errorCode);
-    
-  });
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        console.log(user);
 
-  //Alert.alert("Autentificacion completa")
-  //conexion bace de datos
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        let titulo = ""
+        let destalle = ""
+        switch (errorCode) {
+          case "auth/missing-email":
+            titulo = "Correo Invalido"
+            destalle = "Error de correo electronico, revise sus credenciales"
+
+            break;
+          case "auth/missing-password":
+            titulo = "Contraseña incorrecta"
+            destalle = "Error de contraseña, revise sus credenciales"
+            break;
+          default:
+            titulo = "Error de Ingreso"
+            destalle = "revise sus credenciales"
+            break;
+        }
+        Alert.alert(titulo, destalle);
+        setCorreo("")
+        setContrasenia("")
+        setNombre("")
+
+      });
+
+    //Alert.alert("Autentificacion completa")
+    //conexion bace de datos
     set(ref(db, 'usuarios/'), {
       username: nombre,
       email: correo,
@@ -42,47 +63,75 @@ export default function RegistroScreen({ navigation }: any) {
     Alert.alert("Registro Exitoso")
   }
 
-  
+
   return (
     <View style={styles.container}>
       <StatusBar style='auto' />
-      <Text style={styles.title}> Registrate en Pair Puzzle</Text>
-      <View>
-        <View>
-          <TextInput
-            style={styles.input}
-            placeholder='Nombre Usuario'
-            onChangeText={(texto)=>(setNombre(texto))}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Ingresa tu correo'
-            onChangeText={(texto)=>(setCorreo(texto))}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Ingresa tu contraseña'
-            onChangeText={(texto)=>(setContrasenia(texto))}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Verifica tu contraseña'
-            onChangeText={(texto)=>(setContrasenia(texto))}
-          />
+      <ImageBackground source={require('../assets/backF.jpg')} style={styles.ImgBack}>
+        <View style={styles.img}>
+          <Image source={require('../assets/Logo.png')} style={styles.logo} />
         </View>
-        <TouchableOpacity style={styles.btnStart} onPress={() => navigation.navigate('StartScreen')} >
-          <Text style={styles.txt}>Iniciar Sesión</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.btnRegister} onPress={registro}>
-          <Text style={styles.txt}>Registrarse</Text>
-        </TouchableOpacity>
-      </View>
+        <Text style={styles.title}> REGISTRATE </Text>
+        <View>
+          <View>
+            <TextInput
+              style={styles.input}
+              placeholder='Nombre Usuario'
+              onChangeText={(texto) => (setNombre(texto))}
+              value={nombre}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder='Ingresa tu correo'
+              onChangeText={(texto) => (setCorreo(texto))}
+              value={correo}
+               keyboardType='email-address'
+            />
+            <TextInput
+              style={styles.input}
+              placeholder='Ingresa tu contraseña'
+              onChangeText={(texto) => (setContrasenia(texto))}
+              value={contrasenia}
+             
+            />
+            <TextInput
+              style={styles.input}
+              placeholder='Verifica tu contraseña'
+              onChangeText={(texto) => (setContrasenia(texto))}
+              value={contrasenia}
+            />
+          </View>
+          <TouchableOpacity style={styles.btnStart} onPress={() => navigation.navigate('StartScreen')} >
+            <Text style={styles.txt}>Iniciar Sesión</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.btnRegister} onPress={registro}>
+            <Text style={styles.txt}>Registrarse</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     </View>
 
   )
 }
 
 const styles = StyleSheet.create({
+  ImgBack: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%'
+  },
+  img: {
+    alignItems: 'center',
+    width: 20,
+
+  },
+  logo: {
+    width: 300,
+    height: 100,
+    marginBottom: 10,
+  },
   input: {
     backgroundColor: 'white',
     marginBottom: 10,
@@ -94,7 +143,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 27,
     fontWeight: 'bold',
-    color: 'green',
+    color: 'lightgrey',
     marginBottom: 20,
     textDecorationColor: 'black',
     textShadowColor: '#000',

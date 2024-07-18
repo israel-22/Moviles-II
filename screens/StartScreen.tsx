@@ -1,61 +1,97 @@
 import React, { useState } from 'react';
-import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../config/Config';
+import { ImageBackground } from 'react-native';
 
 
 export default function ({ navigation }: any) {
+
   const [email, setEmail] = useState('');
   const [contrasenia, setContrasenia] = useState('');
 
-  function login(){
+  function login() {
     signInWithEmailAndPassword(auth, email, contrasenia)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      navigation.navigate("CategoriasScreen")
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        navigation.navigate("CategoriasScreen")
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        let titulo = ""
+        let destalle = ""
+        switch (errorCode) {
+          case "auth/missing-email":
+            titulo = "Correo Invalido"
+            destalle = "Error de correo electronico, revise sus credenciales"
+
+            break;
+          case "auth/missing-password":
+            titulo = "Contraseña incorrecta"
+            destalle = "Error de contraseña, revise sus credenciales"
+            break;
+          default:
+            titulo = "Error de Ingreso"
+            destalle = "revise sus credenciales"
+            break;
+        }
+        Alert.alert(titulo, destalle);
+        setEmail("")
+        setContrasenia("")
+
+      });
 
   }
-
-  
 
   return (
     <View style={styles.container}>
       <StatusBar style='auto' />
-      <Text style={styles.title}>Pair Puzzle</Text>
-      <View>
-        <View>
-          <TextInput
-            style={styles.input}
-            placeholder='Ingresa tu correo'
-            onChangeText={(texto)=>(setEmail(texto))}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Ingresa tu contraseña'
-            onChangeText={(texto)=>(setContrasenia(texto))}
-          />
+      <ImageBackground source={require('../assets/backF.jpg')} style={styles.ImgBack}>
+        <View style={styles.img}>
+          <Image source={require('../assets/Logo.png')} style={styles.logo} />
         </View>
-        <TouchableOpacity style={styles.btnStart} onPress={login} >
-          <Text style={styles.txt}>Comezar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.btnRegister} onPress={()=>navigation.navigate('RegistroScreen')}>
-          <Text style={styles.txt}>Registrarse</Text>
-        </TouchableOpacity>
-      </View>
+
+        <View>
+          <View>
+            <TextInput
+              style={styles.input}
+              placeholder='Ingresa tu correo'
+              onChangeText={(texto) => (setEmail(texto))}
+              value={email}
+               keyboardType='email-address'
+            />
+            <TextInput
+              style={styles.input}
+              placeholder='Ingresa tu contraseña'
+              onChangeText={(texto) => (setContrasenia(texto))}
+              value={contrasenia}
+            />
+          </View>
+          <TouchableOpacity style={styles.btnStart} onPress={login} >
+            <Text style={styles.txt}>Comezar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.btnRegister} onPress={() => navigation.navigate('RegistroScreen')}>
+            <Text style={styles.txt}>Registrarse</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  ImgBack: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%'
+  },
   input: {
     backgroundColor: 'white',
     marginBottom: 10,
@@ -77,8 +113,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'skyblue',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
   btnStart: {
@@ -116,4 +150,14 @@ const styles = StyleSheet.create({
     elevation: 5,
     borderRadius: 10,
   },
+  img: {
+    alignItems: 'center',
+    width: 20,
+
+  },
+  logo: {
+    width: 300,
+    height: 100,
+    marginBottom: 10,
+  }
 });

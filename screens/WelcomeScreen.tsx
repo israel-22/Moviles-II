@@ -1,36 +1,44 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-export default function WelcomeScreen({navigation}: any) {
-
+export default function WelcomeScreen({ navigation }: any) {
     return (
+
         <View style={styles.container}>
-            <Text style={styles.title}>Pair Puzzle</Text>
-            <View>
-                <TouchableOpacity style={styles.btnStart} onPress={()=>navigation.navigate('StartScreen')}>
-                    <Text style={styles.txt}>Comezar</Text>
-                </TouchableOpacity>
-            </View>
-            <View>
-                <TouchableOpacity style={styles.btnRegister}onPress={()=>navigation.navigate('RegistroScreen')}>
-                    <Text style={styles.txt}>Registrarse</Text>
-                </TouchableOpacity>
-            </View>
+            <ImageBackground source={require('../assets/backF.jpg')} style={styles.ImgBack}>
+                <View style={styles.img}>
+                    <Image source={require('../assets/Logo.png')} style={styles.logo} />
+                </View>
+                <View>
+                    <TouchableOpacity style={styles.btnStart} onPress={() => navigation.navigate('StartScreen')}>
+                        <Text style={styles.txt}>Comezar</Text>
+                    </TouchableOpacity>
+                </View>
+                <View>
+                    <TouchableOpacity style={styles.btnRegister} onPress={() => navigation.navigate('RegistroScreen')}>
+                        <Text style={styles.txt}>Registrarse</Text>
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground>
         </View>
+
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
+    ImgBack: {
         flex: 1,
+        resizeMode: 'cover',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#4b8ae1',
-
+        width: '100%'
 
     },
-
+    container: {
+        flex: 1,
+        backgroundColor: '#4b8ae1',
+    },
     btnStart: {
         backgroundColor: '#3c59ea',
         borderWidth: 1,
@@ -45,7 +53,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8,
         shadowRadius: 2,
         elevation: 5,
-        right:20
+        right: 20
     },
     btnRegister: {
         backgroundColor: '#17B169',
@@ -60,7 +68,7 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 5,
         borderRadius: 10,
-        right:11,
+        right: 11,
 
     },
     txt: {
@@ -68,17 +76,15 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold'
     },
-    title: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        color: 'green',
-        marginBottom: 20,
-        textDecorationColor:'black',
-        textShadowColor:'#000',
-        textShadowOffset: { width: 0, height: 2 },
-        textShadowRadius:2,
-
+    img: {
+        alignItems: 'center',
+        width: 20,
 
     },
+    logo: {
+        width: 300,
+        height: 100,
+        marginBottom: 10,
+    }
 
 })

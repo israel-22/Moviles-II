@@ -15,6 +15,7 @@ import ConfiguracionScreen from '../screens/ConfiguracionScreen';
 
 
 
+
 const Stack = createStackNavigator();
 
 function MyStack() {
@@ -22,7 +23,7 @@ function MyStack() {
     <Stack.Navigator>
       <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
       <Stack.Screen name="StartScreen" component={StartScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="RegistroScreen" component={RegistroScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="RegistroScreen" component={RegistroScreen} options={{ headerShown: false }} /> 
       <Stack.Screen name="CategoriasScreen" component={CategoriasScreen} options={{ headerShown: false }} />
       <Stack.Screen name="MyTabs" component={MyTabs} options={{ headerShown: false }} />
     </Stack.Navigator>
@@ -93,7 +94,7 @@ function MyTabs({ route }: any) {
 export default function Navegador() {
   return (
     <NavigationContainer>
-      <MyStack />
+      <MyStack/>
     </NavigationContainer>
   )
 }
